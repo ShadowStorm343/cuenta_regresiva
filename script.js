@@ -6,8 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // ---------------------------------------------------------
     // 1. Configuración del Conteo Regresivo
     // ---------------------------------------------------------
-    // Fecha objetivo: 25 de Julio de 2026, 00:00:00 hora local
-    const targetDate = new Date('2026-07-25T00:00:00').getTime();
+    // Fecha objetivo: 24 de Julio de 2026, 00:00:00 hora local
+    const targetDate = new Date('2026-07-24T00:00:00').getTime();
     
     // Fecha de inicio fija (11 de Julio de 2026) para calcular el progreso de la barra
     const startDate = new Date('2026-07-11T00:00:00').getTime();
