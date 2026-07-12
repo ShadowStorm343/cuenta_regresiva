@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ---------------------------------------------------------
     // 4. Panel de Contraseña y Keypad
     // ---------------------------------------------------------
-    const correctPin = "2507";
+    const correctPin = "2407";
     let enteredPin = [];
     const pinDots = document.querySelectorAll('.pin-dot');
     const passcodeCard = document.getElementById('passcode-card');
