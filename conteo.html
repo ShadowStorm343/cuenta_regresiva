@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuenta Regresiva Especial</title>
+    <meta name="description" content="Una hermosa cuenta regresiva para el gran viaje de mi amor hacia la Cordillera Blanca en Ancash. ¡Te amo!">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Canvas/Overlay for interactive heart clicks -->
+    <div id="hearts-container"></div>
+    
+    <!-- Floating music player -->
+    <button id="music-btn" class="floating-btn" aria-label="Reproducir música romántica">
+        <svg class="music-icon icon-play" viewBox="0 0 24 24" width="24" height="24">
+            <path fill="currentColor" d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6zm-2 16c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/>
+        </svg>
+        <svg class="music-icon icon-pause hidden" viewBox="0 0 24 24" width="24" height="24">
+            <path fill="currentColor" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+        </svg>
+    </button>
+
+    <main class="app-container">
+        <!-- Main Card Section -->
+        <section class="card-hero">
+            <div class="heart-pulse-badge">🌸 ¡Buen viaje, Cielitoo!</div>
+            <h1 class="main-title">Falta muy poco para tu viaje :3</h1>
+            <p class="subtitle">Cada segundo nos acerca a tu nueva gran aventura.</p>
+
+            <!-- Countdown Timer -->
+            <div class="countdown-grid" id="countdown">
+                <div class="countdown-card" id="card-days">
+                    <span class="number" id="days">00</span>
+                    <span class="label">Días</span>
+                    <div class="card-glow"></div>
+                </div>
+                <div class="countdown-card" id="card-hours">
+                    <span class="number" id="hours">00</span>
+                    <span class="label">Horas</span>
+                    <div class="card-glow"></div>
+                </div>
+                <div class="countdown-card" id="card-minutes">
+                    <span class="number" id="minutes">00</span>
+                    <span class="label">Minutos</span>
+                    <div class="card-glow"></div>
+                </div>
+                <div class="countdown-card" id="card-seconds">
+                    <span class="number" id="seconds">00</span>
+                    <span class="label">Segundos</span>
+                    <div class="card-glow"></div>
+                </div>
+            </div>
+
+            <!-- D-Day Message (Initially hidden) -->
+            <div class="celebration-message hidden" id="celebration-msg">
+                <h2>✈️ ¡LLEGÓ EL DÍA! 🏔️</h2>
+                <p class="sweet-words">¡Buen viaje a Ancash, mi amor! Disfruta de cada paisaje, de la hermosa laguna de Llanganuco y de la majestuosidad del Huascarán. ¡Te amo con todo mi corazón! ❤️</p>
+            </div>
+
+            <!-- Dynamic traveling airplane graphic -->
+            <div class="progress-bar-container">
+                <div class="progress-trail"></div>
+                <div class="progress-bar" id="progress-bar"></div>
+                <div class="traveling-element" id="traveler">
+                    <svg viewBox="0 0 24 24" width="28" height="28" style="transform: rotate(90deg);">
+                        <!-- Cute Airplane SVG -->
+                        <path fill="#ff4d6d" d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="progress-labels">
+                <span>Hoy</span>
+                <span>¡25 de Julio! 🏔️</span>
+            </div>
+        </section>
+    </main>
+
+    <!-- Bottom Mountain Illustration -->
+    <div class="mountain-container">
+        <!-- Sun/Moon Behind Mountains -->
+        <div class="sky-star animate-pulse"></div>
+        <div class="sky-star-2 animate-pulse"></div>
+        
+        <!-- Mountains SVGs for clean styling -->
+        <svg class="mountain mountain-back" viewBox="0 0 1440 320" preserveAspectRatio="none">
+            <path fill="#f3c6d1" fill-opacity="0.6" d="M0,224L180,128L360,256L540,160L720,288L900,192L1080,288L1260,160L1440,256L1440,320L1260,320L1080,320L900,320L720,320L540,320L360,320L180,320L0,320Z"></path>
+        </svg>
+        <svg class="mountain mountain-mid" viewBox="0 0 1440 320" preserveAspectRatio="none">
+            <path fill="#e295aa" fill-opacity="0.7" d="M0,192L120,256L240,160L360,288L480,128L600,224L720,160L840,256L960,192L1080,288L1200,224L1320,160L1440,224L1440,320L1320,320L1200,320L1080,320L960,320L840,320L720,320L600,320L480,320L360,320L240,320L120,320L0,320Z"></path>
+        </svg>
+        <!-- Front Mountain with Snowy Peaks -->
+        <svg class="mountain mountain-front" viewBox="0 0 1440 320" preserveAspectRatio="none">
+            <path fill="#c86b85" d="M0,256L200,160L400,288L600,192L800,256L1000,160L1200,288L1400,192L1440,224L1440,320L1400,320L1200,320L1000,320L800,320L600,320L400,320L200,320L0,320Z"></path>
+            <!-- Snowy peaks (overlay path) -->
+            <path fill="#ffffff" fill-opacity="0.85" d="M170,174L200,160L230,174L215,190L200,180L185,190ZM570,206L600,192L630,206L615,222L600,212L585,222ZM970,174L1000,160L1030,174L1015,190L1000,180L985,190ZM1370,206L1400,192L1430,206L1415,222L1400,212L1385,222Z"></path>
+        </svg>
+    </div>
+
+    <!-- Script file -->
+    <script src="script.js"></script>
+</body>
+</html>

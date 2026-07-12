@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso Especial</title>
+    <meta name="description" content="Ingresa la fecha de viaje de mi amor para acceder al contador.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="passcode.css">
+</head>
+<body>
+    <!-- Ambient Hearts/Petals Container -->
+    <div id="hearts-container"></div>
+
+    <main class="passcode-container">
+        <!-- Passcode Card -->
+        <section class="passcode-card" id="passcode-card">
+            <h1 class="passcode-title">Holi Cielito c: ❤️</h1>
+            <p class="passcode-subtitle">Ingresa la contraseña especial de 4 dígitos para continuar...<br><small>(Pista: El día y mes de tu gran viaje, formato DDMM)</small></p>
+
+            <!-- PIN Dots Display -->
+            <div class="pin-display">
+                <div class="pin-dot" data-index="0"></div>
+                <div class="pin-dot" data-index="1"></div>
+                <div class="pin-dot" data-index="2"></div>
+                <div class="pin-dot" data-index="3"></div>
+            </div>
+
+            <!-- Custom Numeric Keypad -->
+            <div class="keypad">
+                <button class="key-btn" data-key="1">1</button>
+                <button class="key-btn" data-key="2">2</button>
+                <button class="key-btn" data-key="3">3</button>
+                <button class="key-btn" data-key="4">4</button>
+                <button class="key-btn" data-key="5">5</button>
+                <button class="key-btn" data-key="6">6</button>
+                <button class="key-btn" data-key="7">7</button>
+                <button class="key-btn" data-key="8">8</button>
+                <button class="key-btn" data-key="9">9</button>
+                <button class="key-btn action" data-key="clear" aria-label="Borrar todo">C</button>
+                <button class="key-btn" data-key="0">0</button>
+                <button class="key-btn action" data-key="backspace" aria-label="Borrar último dígito">
+                    <svg viewBox="0 0 24 24" width="20" height="20">
+                        <path fill="currentColor" d="M22 3H7c-.69 0-1.23.35-1.59.88L0 12l5.41 8.11c.36.53.9.89 1.59.89h15c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 14H7.07L2.4 12l4.66-7H22v12zm-11.59-2L14 12.41 17.59 16 19 14.59 15.41 11 19 7.41 17.59 6 14 9.59 10.41 6 9 7.41 12.59 11 9 14.59z"/>
+                    </svg>
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Bottom Mountain Illustration -->
+    <div class="mountain-container">
+        <div class="sky-star animate-pulse"></div>
+        <div class="sky-star-2 animate-pulse"></div>
+        <svg class="mountain mountain-back" viewBox="0 0 1440 320" preserveAspectRatio="none">
+            <path fill="#f3c6d1" fill-opacity="0.6" d="M0,224L180,128L360,256L540,160L720,288L900,192L1080,288L1260,160L1440,256L1440,320L1260,320L1080,320L900,320L720,320L540,320L360,320L180,320L0,320Z"></path>
+        </svg>
+        <svg class="mountain mountain-mid" viewBox="0 0 1440 320" preserveAspectRatio="none">
+            <path fill="#e295aa" fill-opacity="0.7" d="M0,192L120,256L240,160L360,288L480,128L600,224L720,160L840,256L960,192L1080,288L1200,224L1320,160L1440,224L1440,320L1320,320L1200,320L1080,320L960,320L840,320L720,320L600,320L480,320L360,320L240,320L120,320L0,320Z"></path>
+        </svg>
+        <svg class="mountain mountain-front" viewBox="0 0 1440 320" preserveAspectRatio="none">
+            <path fill="#c86b85" d="M0,256L200,160L400,288L600,192L800,256L1000,160L1200,288L1400,192L1440,224L1440,320L1400,320L1200,320L1000,320L800,320L600,320L400,320L200,320L0,320Z"></path>
+            <path fill="#ffffff" fill-opacity="0.85" d="M170,174L200,160L230,174L215,190L200,180L185,190ZM570,206L600,192L630,206L615,222L600,212L585,222ZM970,174L1000,160L1030,174L1015,190L1000,180L985,190ZM1370,206L1400,192L1430,206L1415,222L1400,212L1385,222Z"></path>
+        </svg>
+    </div>
+
+    <!-- Scripts -->
+    <script src="passcode.js"></script>
+</body>
+</html>
