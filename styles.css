@@ -119,6 +119,46 @@ body {
     transform: scale(0.95);
 }
 
+/* Indicador y animación para la música cuando el navegador requiere interacción */
+.music-prompt {
+    position: fixed;
+    top: 32px;
+    right: 90px;
+    background: rgba(255, 77, 109, 0.95);
+    color: #ffffff;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(255, 77, 109, 0.35);
+    z-index: 1000;
+    pointer-events: none;
+    animation: promptPulse 2s infinite ease-in-out;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    white-space: nowrap;
+}
+
+.music-prompt.hidden {
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    display: none !important;
+}
+
+@keyframes promptPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.pulse-attention {
+    animation: btnPulse 1.5s infinite alternate;
+}
+
+@keyframes btnPulse {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 77, 109, 0.7); }
+    100% { transform: scale(1.15); box-shadow: 0 0 0 14px rgba(255, 77, 109, 0); }
+}
+
 .hidden {
     display: none !important;
 }
@@ -190,70 +230,7 @@ body {
     max-width: 600px;
 }
 
-/* Countdown Grid */
-.countdown-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    width: 100%;
-    margin-top: 15px;
-}
 
-.countdown-card {
-    background: rgba(255, 255, 255, 0.5);
-    border: 1px solid var(--glass-border);
-    border-radius: 20px;
-    padding: 25px 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-    transition: var(--transition-smooth);
-}
-
-.countdown-card:hover {
-    transform: scale(1.05) translateY(-5px);
-    background: rgba(255, 255, 255, 0.7);
-    box-shadow: 0 10px 25px rgba(255, 77, 109, 0.15);
-}
-
-.countdown-card .number {
-    font-size: 3.2rem;
-    font-weight: 700;
-    color: var(--accent-rose);
-    line-height: 1;
-    z-index: 2;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
-}
-
-.countdown-card .label {
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: var(--rose-gold);
-    font-weight: 600;
-    margin-top: 8px;
-    z-index: 2;
-}
-
-/* Card Radial Glow Effect on Hover */
-.card-glow {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle, rgba(255, 204, 213, 0.4) 0%, transparent 70%);
-    transform: translate(-50%, -50%) scale(0);
-    transition: transform 0.5s ease;
-    pointer-events: none;
-    z-index: 1;
-}
-
-.countdown-card:hover .card-glow {
-    transform: translate(-50%, -50%) scale(1.5);
-}
 
 /* D-Day Celebration Message */
 .celebration-message {
@@ -350,6 +327,50 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 15px;
+}
+
+/* Letter Day Tabs */
+.letter-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+    z-index: 10;
+}
+
+.tab-btn {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--dark-text);
+    background: rgba(255, 255, 255, 0.45);
+    border: 1px solid var(--glass-border);
+    padding: 8px 18px;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(201, 122, 142, 0.08);
+    transition: var(--transition-smooth);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.tab-btn:hover {
+    background: rgba(255, 255, 255, 0.85);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(255, 77, 109, 0.15);
+}
+
+.tab-btn.active {
+    background: linear-gradient(135deg, var(--accent-rose), var(--accent-rose-hover));
+    color: white;
+    border-color: var(--accent-rose);
+    box-shadow: 0 6px 18px rgba(255, 77, 109, 0.35);
+}
+
+.tab-btn:active {
+    transform: translateY(0);
 }
 
 .letter-instruction {
@@ -594,12 +615,12 @@ body {
     50% { transform: scale(1.4); opacity: 1; box-shadow: 0 0 15px #fff, 0 0 30px var(--accent-rose); }
 }
 
-/* Responsive Media Queries */
+/* Responsive Media Queries para móviles y tablets (Samsung Galaxy A56, etc.) */
 @media (max-width: 768px) {
     .app-container {
         padding-top: 25px;
-        padding-bottom: 150px;
-        gap: 30px;
+        padding-bottom: calc(150px + env(safe-area-inset-bottom, 0px));
+        gap: 25px;
     }
     
     .floating-btn {
@@ -607,59 +628,75 @@ body {
         right: 15px;
         width: 48px;
         height: 48px;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .music-prompt {
+        top: 70px;
+        right: 15px;
+        font-size: 0.78rem;
+        padding: 6px 12px;
+        max-width: calc(100vw - 30px);
     }
 
     .card-hero {
-        padding: 30px 18px;
+        padding: 25px 16px;
+        border-radius: 20px;
     }
 
     .main-title {
-        font-size: 2rem;
+        font-size: 1.85rem;
+    }
+
+    .celebration-message h2 {
+        font-size: 2.1rem;
+    }
+
+    .celebration-message .sweet-words {
+        font-size: 1.05rem;
+        line-height: 1.5;
     }
 
     .subtitle {
-        font-size: 0.95rem;
-    }
-
-    .countdown-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-    }
-
-    .countdown-card {
-        padding: 18px 10px;
-        border-radius: 16px;
-    }
-
-    .countdown-card .number {
-        font-size: 2.3rem;
-    }
-
-    .countdown-card .label {
-        font-size: 0.8rem;
-        letter-spacing: 1px;
+        font-size: 0.9rem;
     }
     
+    .letter-tabs {
+        gap: 6px;
+        margin-top: 10px;
+    }
+
+    .tab-btn {
+        font-size: 0.78rem;
+        padding: 6px 10px;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+    }
+
     .envelope-wrapper {
-        width: 290px;
-        height: 200px;
+        width: 280px;
+        height: 190px;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
     }
     
     .envelope .flap {
-        border-left-width: 145px;
-        border-right-width: 145px;
-        border-top-width: 105px;
+        border-left-width: 140px;
+        border-right-width: 140px;
+        border-top-width: 100px;
     }
     
     .envelope .pocket {
-        border-left-width: 145px;
-        border-right-width: 145px;
-        border-bottom-width: 100px;
+        border-left-width: 140px;
+        border-right-width: 140px;
+        border-bottom-width: 95px;
     }
 
     .envelope-wrapper.open .letter {
-        transform: translateY(-150px);
+        transform: translateY(-140px);
         height: 330px;
+        -webkit-overflow-scrolling: touch;
     }
 
     .letter-content {
@@ -671,15 +708,53 @@ body {
     }
     
     .sky-star {
-        bottom: 150px;
+        bottom: 140px;
     }
     .sky-star-2 {
-        bottom: 170px;
+        bottom: 160px;
     }
 }
 
-@media (max-width: 300px) {
-    .countdown-grid {
-        grid-template-columns: 1fr;
+@media (max-width: 420px) {
+    .app-container {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .main-title {
+        font-size: 1.65rem;
+    }
+
+    .celebration-message h2 {
+        font-size: 1.8rem;
+    }
+
+    .celebration-message .sweet-words {
+        font-size: 0.98rem;
+    }
+
+    .envelope-wrapper {
+        width: 260px;
+        height: 180px;
+    }
+
+    .envelope .flap {
+        border-left-width: 130px;
+        border-right-width: 130px;
+        border-top-width: 92px;
+    }
+
+    .envelope .pocket {
+        border-left-width: 130px;
+        border-right-width: 130px;
+        border-bottom-width: 90px;
+    }
+
+    .envelope-wrapper.open .letter {
+        transform: translateY(-130px);
+        height: 310px;
+        padding: 15px;
     }
 }
+
+

@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Cuenta Regresiva Especial</title>
     <meta name="description" content="Una hermosa cuenta regresiva para el gran viaje de mi amor hacia la Cordillera Blanca en Ancash. ¡Te amo!">
     
@@ -18,6 +18,7 @@
     <div id="hearts-container"></div>
     
     <!-- Floating music player -->
+    <div id="music-prompt" class="music-prompt hidden">🎵 Toca en cualquier lugar para la música ❤️</div>
     <button id="music-btn" class="floating-btn" aria-label="Reproducir música romántica">
         <svg class="music-icon icon-play" viewBox="0 0 24 24" width="24" height="24">
             <path fill="currentColor" d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6zm-2 16c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/>
@@ -31,44 +32,20 @@
         <!-- Main Card Section -->
         <section class="card-hero">
             <div class="heart-pulse-badge">🌸 ¡Buen viaje, Cielitoo!</div>
-            <h1 class="main-title">Falta muy poco para tu viaje :3</h1>
-            <p class="subtitle">Cada segundo nos acerca a tu nueva gran aventura.</p>
+            <h1 class="main-title">Ya llegó el gran día :3</h1>
+            <p class="subtitle">El inicio de tu pequeña aventura <3</p>
 
-            <!-- Countdown Timer -->
-            <div class="countdown-grid" id="countdown">
-                <div class="countdown-card" id="card-days">
-                    <span class="number" id="days">00</span>
-                    <span class="label">Días</span>
-                    <div class="card-glow"></div>
-                </div>
-                <div class="countdown-card" id="card-hours">
-                    <span class="number" id="hours">00</span>
-                    <span class="label">Horas</span>
-                    <div class="card-glow"></div>
-                </div>
-                <div class="countdown-card" id="card-minutes">
-                    <span class="number" id="minutes">00</span>
-                    <span class="label">Minutos</span>
-                    <div class="card-glow"></div>
-                </div>
-                <div class="countdown-card" id="card-seconds">
-                    <span class="number" id="seconds">00</span>
-                    <span class="label">Segundos</span>
-                    <div class="card-glow"></div>
-                </div>
-            </div>
-
-            <!-- D-Day Message (Initially hidden) -->
-            <div class="celebration-message hidden" id="celebration-msg">
+            <!-- Mensaje Especial de Viaje -->
+            <div class="celebration-message" id="celebration-msg">
                 <h2>✈️ ¡LLEGÓ EL DÍA! 🏔️</h2>
-                <p class="sweet-words">¡Buen viaje a Ancash, mi amor! Disfruta de cada paisaje, de la hermosa laguna de Llanganuco y de la majestuosidad del Huascarán. ¡Te amo con todo mi corazón! ❤️</p>
+                <p class="sweet-words">¡Buen viaje Cielito hermosa! Disfruta de cada paisaje, los hermosos cielos, y el aire limpio y puro de la provincia junto con la majestuosidad de nuestro bello país . ¡Te quiero con todo mi ser! ❤️</p>
             </div>
 
-            <!-- Dynamic traveling airplane graphic -->
+            <!-- Gráfico del avioncito viajero al 100% -->
             <div class="progress-bar-container">
                 <div class="progress-trail"></div>
-                <div class="progress-bar" id="progress-bar"></div>
-                <div class="traveling-element" id="traveler">
+                <div class="progress-bar" id="progress-bar" style="width: 100%;"></div>
+                <div class="traveling-element" id="traveler" style="left: 100%;">
                     <svg viewBox="0 0 24 24" width="28" height="28" style="transform: rotate(90deg);">
                         <!-- Cute Airplane SVG -->
                         <path fill="#ff4d6d" d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
@@ -77,7 +54,7 @@
             </div>
             
             <div class="progress-labels">
-                <span>Hoy</span>
+                <span>¡Llegó el día!</span>
                 <span>¡24 de Julio! 🏔️</span>
             </div>
         </section>
@@ -85,11 +62,12 @@
         <!-- Love Letter Section -->
         <section class="envelope-section">
             <p class="letter-instruction">✨ Toca el sobre para abrir una cartita especial... ✨</p>
+            
             <div class="envelope-wrapper" id="envelope-wrapper">
                 <div class="envelope">
                     <div class="flap"></div>
                     <div class="pocket"></div>
-                    <div class="heart-seal">❤️</div>
+                    <div class="heart-seal">🌸</div>
                     <div class="letter">
                         <div class="letter-content">
                             <h2 class="letter-title">Hola Cielito :3,</h2>
@@ -109,6 +87,15 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <!-- Tabs for daily letters -->
+            <div class="letter-tabs" id="letter-tabs">
+                <button class="tab-btn active" data-day="lunes">Lunes 🌸</button>
+                <button class="tab-btn" data-day="martes">Martes 🌻</button>
+                <button class="tab-btn" data-day="miercoles">Miércoles 🌷</button>
+                <button class="tab-btn" data-day="jueves">Jueves 💖</button>
+                <button class="tab-btn" data-day="viernes">Viernes ✈️❤️</button>
             </div>
         </section>
     </main>

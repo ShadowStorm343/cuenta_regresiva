@@ -16,9 +16,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const heart = document.createElement('div');
         heart.classList.add('ambient-heart');
         
-        // Emojis románticos
-        const heartTypes = ['❤️', '💖', '🌸', '✨', '💕', '🌹'];
-        heart.textContent = heartTypes[Math.floor(Math.random() * heartTypes.length)];
+        // Emojis de flores: girasoles (🌻), gerberas (🌼) y lirios (🌷)
+        const flowerTypes = ['🌻', '🌼', '🌷'];
+        heart.textContent = flowerTypes[Math.floor(Math.random() * flowerTypes.length)];
         
         heart.style.left = Math.random() * 100 + 'vw';
         
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function createBurstHeart(x, y) {
         if (!heartsContainer) return;
         const heart = document.createElement('div');
-        heart.textContent = ['❤️', '💖', '🌸', '✨'][Math.floor(Math.random() * 4)];
+        heart.textContent = ['🌻', '🌼', '🌷'][Math.floor(Math.random() * 3)];
         heart.style.position = 'fixed';
         heart.style.left = `${x}px`;
         heart.style.top = `${y}px`;

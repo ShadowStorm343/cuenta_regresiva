@@ -4,76 +4,17 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     // ---------------------------------------------------------
-    // 1. Configuración del Conteo Regresivo
+    // 1. Celebración Inicial
     // ---------------------------------------------------------
-    // Fecha objetivo: 24 de Julio de 2026, 00:00:00 hora local
-    const targetDate = new Date('2026-07-24T00:00:00').getTime();
-    
-    // Fecha de inicio fija (11 de Julio de 2026) para calcular el progreso de la barra
-    const startDate = new Date('2026-07-11T00:00:00').getTime();
-    const totalDuration = targetDate - startDate;
-
-    const daysEl = document.getElementById('days');
-    const hoursEl = document.getElementById('hours');
-    const minutesEl = document.getElementById('minutes');
-    const secondsEl = document.getElementById('seconds');
-    const countdownGrid = document.getElementById('countdown');
-    const celebrationMsg = document.getElementById('celebration-msg');
-    
-    const progressBar = document.getElementById('progress-bar');
-    const traveler = document.getElementById('traveler');
-
-    function updateCountdown() {
-        const now = Date.now();
-        const difference = targetDate - now;
-
-        // Si ya llegó la fecha o pasó
-        if (difference <= 0) {
-            daysEl.textContent = '00';
-            hoursEl.textContent = '00';
-            minutesEl.textContent = '00';
-            secondsEl.textContent = '00';
-            
-            // Ocultar conteo y mostrar mensaje especial de viaje
-            countdownGrid.classList.add('hidden');
-            celebrationMsg.classList.remove('hidden');
-            
-            progressBar.style.width = '100%';
-            traveler.style.left = '100%';
-            
-            // Iniciar lluvia de confeti / celebración
+    setTimeout(() => {
+        if (typeof triggerDDayCelebration === 'function') {
             triggerDDayCelebration();
-            return;
         }
-
-        // Cálculos de tiempo
-        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-        // Actualizar DOM con formato 00
-        daysEl.textContent = String(days).padStart(2, '0');
-        hoursEl.textContent = String(hours).padStart(2, '0');
-        minutesEl.textContent = String(minutes).padStart(2, '0');
-        secondsEl.textContent = String(seconds).padStart(2, '0');
-
-        // Actualizar barra de progreso y el corazoncito viajero
-        const elapsed = now - startDate;
-        let progressPercent = (elapsed / totalDuration) * 100;
-        progressPercent = Math.min(Math.max(progressPercent, 0), 100);
-        
-        progressBar.style.width = `${progressPercent}%`;
-        traveler.style.left = `${progressPercent}%`;
-    }
-
-    // Actualizar inmediatamente y luego cada segundo
-    updateCountdown();
-    const countdownInterval = setInterval(updateCountdown, 1000);
+    }, 500);
 
 
     // ---------------------------------------------------------
-    // 2. Sobre y Carta de Amor Interactiva
+    // 2. Sobre y Carta de Amor Interactiva y Pestañas Diarias
     // ---------------------------------------------------------
     const envelopeWrapper = document.getElementById('envelope-wrapper');
     if (envelopeWrapper) {
@@ -83,6 +24,115 @@ document.addEventListener('DOMContentLoaded', () => {
             e.stopPropagation();
         });
     }
+
+    const lettersData = {
+        lunes: {
+            title: "Hola Cielito :3,",
+            paragraphs: [
+                "Falta muy poco para que comience esta maravillosa y pequeña aventura. Quería escribirte estas pequeñas palabras para decirte lo mucho que te quiero y lo feliz que me hace ver cómo te preparas para tus metas y sueños, incluyendo, por supuesto, este pequeño viaje c:.",
+                "Disfruta de cada hermoso paisaje, de la hermosura de los cielos despejados de la provincia, y la belleza del paisaje que no puedes encontrar acá. Toma muchas fotos, respira el aire fresco de la provincia y siente la libertad que un viaje fuera de Lima te puede dar. Yo estaré pensando en ti a cada momento, contando los días para volver a abrazarte :3",
+                "¡Te quiero muchísimo!. Y te quiero, te deseo, y te anhelo con todo mi ser ❤️."
+            ],
+            signature: "Siempre tuyo,<br>Tu Kari<3."
+        },
+        martes: {
+            title: "Feliz Martes, Cielito🌸,",
+            paragraphs: [
+                "Hoy es martes y la emoción por tu viaje sigue creciendo. Quería escribir este mensajito para expresar lo especial que eres para mí y lo feliz que me hace ver cómo estás a punto de emprender esta gran aventura :3.",
+                "Sé que, mientras escribo, estarás ocupada haciendo tus cositas, pero aún así escribo estas palabras con muchas ganas de que ya sea el momento de partir, porque sé que eso te hará feliz, y si te hace feliz eso me hará feliz :3. Ahora, recuerda ir con la mente lista para disfrutar de paisajes increíbles que te llenarán de energía positiva.",
+                "Te mando un abrazo gigante y un beso enorme. Estaré aquí pensando en ti en cada paso de tu camino. ¡Te quiero muchísimo! ❤️"
+            ],
+            signature: "Con todo mi cariño,<br>Tu Kari<3."
+        },
+        miercoles: {
+            title: "Miércoles de expectativas v:",
+            paragraphs: [
+                "Estoy emocionadooo, muy emocionadooo, estoy escribiendo esta notita mientras estás trabajando. ¡Y no sé como expresar la emoción que siento por tí! Se acerca cada vez tu día de viaje 🌸",
+                "Mientras tanto, recuerda lo mucho que te quiero y lo orgulloso que estoy de ti. ¡Espero tengas un hermoso día! 💕"
+            ],
+            signature: "Con todo mi cariño,<br>Tu Kari<3."
+        },
+        jueves: {
+            title: "¡Feliz Jueves!",
+            paragraphs: [
+                "¡Ya casi es hora! Dios santo, bendito y misericordioso :v.",
+                "El viaje está a la vuelta de la esquina. ¡Prepárateeeeee! 🥰"
+            ],
+            signature: "Con todo mi cariño,<br>Tu Kari<3."
+        },
+        viernes: {
+            title: "¡Viernes de viaje! ✈️ ❤️",
+            paragraphs: [
+                "¡El gran día ha llegado! ¡Es hoyyyyy, Dios míoooooooooo!.",
+                "¡Te deseo el mejor de los viajes, Cielito lindaaaaaaa! Estaeré contando las horas, minutos, y segundos para saber si ya llegaste o como vas. ❤️",
+                "Disfruta mucho, oraré porque tengas un buen viaje. Un saludito a la familia, a tu mamita y a tu hermanita, sé que tu papito se quedaré en casa :v.",
+                "Este es tu viaje, disfruta mucho, relájate, duerme, come, y diviértete. Yo te esperaré aquí, pensando en ti y en lo feliz que estoy por ti. ❤️",
+            ],
+            signature: "Con todo mi cariño,<br>Tu Kari<3."
+        }
+    };
+
+    function changeLetterTab(day) {
+        const letterContent = document.querySelector('.letter-content');
+        if (!letterContent) return;
+
+        // Efecto suave de transición de opacidad y posición
+        letterContent.style.opacity = '0';
+        letterContent.style.transform = 'translateY(15px)';
+        letterContent.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
+
+        setTimeout(() => {
+            const data = lettersData[day];
+            const titleEl = letterContent.querySelector('.letter-title');
+            const signatureEl = letterContent.querySelector('.letter-signature');
+            
+            // Eliminar los párrafos de texto anteriores
+            const oldParas = letterContent.querySelectorAll('.letter-text');
+            oldParas.forEach(p => p.remove());
+
+            // Actualizar Título
+            titleEl.textContent = data.title;
+
+            // Insertar nuevos párrafos antes de la firma
+            data.paragraphs.forEach(paraText => {
+                const p = document.createElement('p');
+                p.className = 'letter-text';
+                p.textContent = paraText;
+                letterContent.insertBefore(p, signatureEl);
+            });
+
+            // Actualizar Firma
+            signatureEl.innerHTML = data.signature;
+
+            // Restablecer estilos para fade in
+            letterContent.style.opacity = '';
+            letterContent.style.transform = '';
+            letterContent.style.transition = '';
+        }, 220);
+    }
+
+    // Configurar eventos de los botones de pestañas
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    tabButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation(); // Evitar corazones en el clic de pestañas
+            
+            if (btn.classList.contains('active')) return;
+
+            tabButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const selectedDay = btn.getAttribute('data-day');
+            changeLetterTab(selectedDay);
+
+            // Si el sobre está cerrado, se abre automáticamente al cambiar de pestaña
+            if (envelopeWrapper && !envelopeWrapper.classList.contains('open')) {
+                setTimeout(() => {
+                    envelopeWrapper.classList.add('open');
+                }, 300);
+            }
+        });
+    });
 
 
     // ---------------------------------------------------------
@@ -94,9 +144,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const heart = document.createElement('div');
         heart.classList.add('ambient-heart');
         
-        // Emojis románticos aleatorios
-        const heartTypes = ['❤️', '💖', '🌸', '✨', '💕', '🌹'];
-        heart.textContent = heartTypes[Math.floor(Math.random() * heartTypes.length)];
+        // Emojis de flores: girasoles (🌻), gerberas (🌼) y lirios (🌷)
+        const flowerTypes = ['🌻', '🌼', '🌷'];
+        heart.textContent = flowerTypes[Math.floor(Math.random() * flowerTypes.length)];
         
         // Posicionamiento horizontal aleatorio
         heart.style.left = Math.random() * 100 + 'vw';
@@ -143,7 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function createBurstHeart(x, y) {
         const heart = document.createElement('div');
-        heart.textContent = ['❤️', '💖', '🌸', '✨'][Math.floor(Math.random() * 4)];
+        heart.textContent = ['🌻', '🌼', '🌷'][Math.floor(Math.random() * 3)];
         heart.style.position = 'fixed';
         heart.style.left = `${x}px`;
         heart.style.top = `${y}px`;
@@ -180,22 +230,33 @@ document.addEventListener('DOMContentLoaded', () => {
     const musicBtn = document.getElementById('music-btn');
     const iconPlay = musicBtn.querySelector('.icon-play');
     const iconPause = musicBtn.querySelector('.icon-pause');
+    const musicPrompt = document.getElementById('music-prompt');
     
     // Crear el objeto Audio con el archivo local
-    const bgMusic = new Audio("I Follow Rivers - Lykke Li (La Vie d'AdèleLa Vida de Adele).MP3");
+    const bgMusic = new Audio("SANTOS BRAVOS - WOW (LetraLyrics).MP3");
     bgMusic.loop = true;
+    bgMusic.volume = 0.5; // Reducir volumen al 50%
     let isPlaying = false;
 
     function playMusic() {
-        bgMusic.play()
+        return bgMusic.play()
             .then(() => {
                 isPlaying = true;
                 musicBtn.classList.add('playing');
+                musicBtn.classList.remove('pulse-attention');
                 iconPlay.classList.add('hidden');
                 iconPause.classList.remove('hidden');
+                if (musicPrompt) musicPrompt.classList.add('hidden');
+                removeInteractionListeners();
             })
             .catch((error) => {
-                console.log("La reproducción automática fue bloqueada por el navegador. Se reproducirá al interactuar.", error);
+                isPlaying = false;
+                musicBtn.classList.remove('playing');
+                musicBtn.classList.add('pulse-attention');
+                iconPlay.classList.remove('hidden');
+                iconPause.classList.add('hidden');
+                if (musicPrompt) musicPrompt.classList.remove('hidden');
+                console.log("Autoplay bloqueado por política del navegador. Esperando interacción del usuario.", error);
             });
     }
 
@@ -207,29 +268,38 @@ document.addEventListener('DOMContentLoaded', () => {
         iconPause.classList.add('hidden');
     }
 
-    // Intentar reproducir de inmediato al ingresar a la página
-    playMusic();
-
-    // Función para reproducir tras la primera interacción del usuario (requerido por políticas de navegadores)
-    const playOnInteraction = () => {
+    function handleUserInteraction() {
         if (!isPlaying) {
             playMusic();
         }
-        // Remover eventos para que no sigan ejecutándose
-        window.removeEventListener('click', playOnInteraction);
-        window.removeEventListener('keydown', playOnInteraction);
-        window.removeEventListener('touchstart', playOnInteraction);
-    };
+    }
 
-    window.addEventListener('click', playOnInteraction);
-    window.addEventListener('keydown', playOnInteraction);
-    window.addEventListener('touchstart', playOnInteraction);
+    const interactionEvents = ['click', 'pointerdown', 'touchstart', 'touchend', 'mousedown', 'keydown', 'scroll'];
+
+    function addInteractionListeners() {
+        interactionEvents.forEach(event => {
+            window.addEventListener(event, handleUserInteraction, { capture: true, passive: true });
+        });
+    }
+
+    function removeInteractionListeners() {
+        interactionEvents.forEach(event => {
+            window.removeEventListener(event, handleUserInteraction, { capture: true });
+        });
+    }
+
+    // Escuchar cualquier tipo de interacción para desbloquear el audio del navegador
+    addInteractionListeners();
+
+    // Intentar reproducir inmediatamente
+    playMusic();
 
     // Controlador del botón flotante de música
     musicBtn.addEventListener('click', (e) => {
         e.stopPropagation(); // Evitar corazoncitos al tocar el botón de música
         if (isPlaying) {
             pauseMusic();
+            if (musicPrompt) musicPrompt.classList.add('hidden');
         } else {
             playMusic();
         }
